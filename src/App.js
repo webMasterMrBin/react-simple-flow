@@ -1,9 +1,12 @@
 import { ReactFlow } from "./ReactFlow";
+import { Background } from './ReactFlow/Background';
 
 function App() {
   return (
     <div style={{ height: 600 }}>
-      <ReactFlow />
+      <ReactFlow>
+        <Background />
+      </ReactFlow>
     </div>
     
   );
