@@ -1,8 +1,8 @@
-import { createContext } from 'react';
+import { createContext, useRef, useState } from 'react';
 import { ViewPort } from './ViewPort';
 import './index.css'
 
-const Context = createContext(null);
+const FlowContext = createContext(null);
 
 /**
  * 画布无限平移 滚动缩放
@@ -10,19 +10,41 @@ const Context = createContext(null);
  * 2. background 里的pattern xy等值 随画布平移缩放比例变化 
 */
 const ReactFlow = ({ children }) => {
+  const [translatePosition, setTranslatePosition] = useState({ x: 0, y: 0 });
+  const isMouseDownRef = useRef(false);
+
+  const onMouseDown = () => {
+    isMouseDownRef.current = true;
+  }
+
+  const onMouseMove = (e) => {
+    if (isMouseDownRef.current) {
+      setTranslatePosition(pre => ({
+        x: pre.x + e.movementX,
+        y: pre.y + e.movementY
+      }))
+    }
+  } 
+
+  const onMouseUp = () => {
+    isMouseDownRef.current = false;
+  }
+
   return (
-    <div className="react-flow">
-      <div className="react-flow-render">
-        <div className="react-flow-pane" onMouseMove={v => console.log(v)}>
-          <ViewPort />
+    <FlowContext.Provider value={{ translatePosition }}>
+      <div className="react-flow" onMouseDown={onMouseDown} onMouseMove={onMouseMove} onMouseUp={onMouseUp}>
+        <div className="react-flow-render">
+          <div className="react-flow-pane">
+            <ViewPort />
+          </div>
         </div>
+        
+        {children}
       </div>
-      
-      {children}
-    </div>
+    </FlowContext.Provider>
   );
 };
 
 
 
-export { ReactFlow, Context };
+export { ReactFlow, FlowContext };
