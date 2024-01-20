@@ -1,0 +1,8 @@
+const MAX_SCALE = 0.8;
+const MIN_SCALE = 0.2;
+const SCALE_STEP = -0.002;
+
+const MAX_WIDTH_HEIGHT = 40;
+const MAX_CIRCLE_R = 2;
+
+export { MAX_SCALE, MIN_SCALE, SCALE_STEP, MAX_WIDTH_HEIGHT, MAX_CIRCLE_R  }

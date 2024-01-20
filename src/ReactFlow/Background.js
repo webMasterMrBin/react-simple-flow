@@ -1,14 +1,25 @@
 import { useContext } from 'react';
 import { FlowContext } from './index';
+import { MAX_CIRCLE_R, MAX_WIDTH_HEIGHT, MAX_SCALE } from './constant';
 
 const Background = () => {
-  const context = useContext(FlowContext);
-  console.log('context', context)
+  const { translatePosition: { x, y }, scale } = useContext(FlowContext);
+
+  const pattenWidthHeight = MAX_WIDTH_HEIGHT / MAX_SCALE * scale;
+  const circleR = MAX_CIRCLE_R / MAX_SCALE * scale;
+
   return (
     <svg className="react-flow-background">
       <defs>
-        <pattern id="circle" x="10" y="10" width="100" height="100" patternUnits="userSpaceOnUse">
-          <circle cx="10" cy="10" r="10" />
+        <pattern
+          id="circle"
+          x={x}
+          y={y}
+          width={pattenWidthHeight}
+          height={pattenWidthHeight}
+          patternUnits="userSpaceOnUse"
+        >
+          <circle cx={circleR} cy={circleR} r={circleR} />
         </pattern>
       </defs>
 
