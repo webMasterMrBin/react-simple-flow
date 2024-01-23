@@ -34,7 +34,7 @@ const ReactFlow = ({ children }) => {
       throttle(e);
     }
 
-    ref.current.addEventListener('wheel', onWheel);
+    ref.current.addEventListener('wheel', onWheel, { passive: false });
 
     return () => {
       ref.current.removeEventListener('wheel', onWheel);
@@ -57,7 +57,7 @@ const ReactFlow = ({ children }) => {
   const onMouseUp = () => {
     isMouseDownRef.current = false;
   }
-
+ 
   return (
     <FlowContext.Provider value={{ translatePosition, scale }}>
       <div

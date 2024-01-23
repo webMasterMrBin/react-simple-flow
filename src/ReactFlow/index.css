@@ -3,6 +3,7 @@
   position: relative;
   width: 100%;
   height: 100%;
+  touch-action: none;
 }
 
 .react-flow-render {
@@ -25,6 +26,7 @@
   position: absolute;
   top: 0;
   left: 0;
+  z-index: 999;
 }
 
 .react-flow-background {
@@ -35,12 +37,47 @@
   left: 0;
 }
 
-.test-node {
-  width: 100px;
-  height: 100px;
-  background: red;
+.react-flow-node {
+  width: 200px;
+  height: 200px;
+  background: blue;
+  position: absolute;
+  font-size: 30px;
+  text-align: center;
+  color: yellow;
+  line-height: 200px;
+  top: 0;
+  left: 0;
+  z-index: 10;
+}
+
+.react-flow-edge {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.react-flow-port {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: green;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.left-port {
+  left: -10px;
+}
+
+.right-port {
+  right: -10px;
 }
 
 .react-flow-viewport {
   background: red;
 }
+
